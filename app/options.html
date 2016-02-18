@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+    <head>
+        <!-- build:css styles/vendor.css -->
+        <!-- bower:css -->
+        <!-- endbower -->
+        <!-- endbuild -->
+        <!-- build:css styles/main.css -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+        <link href="styles/main.css" rel="stylesheet">
+        <script src="bower_components/jquery/dist/jquery.min.js"></script>
+        <!-- endbuild -->        
+    </head>
+    <body>
+        <div class="col-md-8">
+        <h1>Taggit Settings</h1>
+        <p>NOTE: We do not store your info. This just saves your info in your browser</p>
+        <p id="settings-alert"></p>
+        <form id="settings-id">
+            <div class="form-group">
+                <label for="clientId">Client ID</label>
+                <input type="text" class="form-control" id="clientId">
+            </div>
+            <div class="form-group">
+                <label for="clientSecret">Client Secret</label>
+                <input type="text" class="form-control" id="clientSecret">
+            </div>
+            <div class="form-group">
+                <label for="scriptLink">Script Link</label>
+                <input type="text" class="form-control" id="scriptLink">
+            </div>
+            
+            <button id="save-btn" type="submit" class="btn btn-primary">Save</button>
+        </form>     
+        </div>   
+        <!-- build:js scripts/vendor.js -->
+        <!-- bower:js -->
+        <!-- endbower -->
+        <!-- endbuild -->         
+        <!-- build:js scripts/options.js -->
+        <script src="scripts/options.js"></script>
+        <!-- endbuild -->
+    </body>
+</html>
