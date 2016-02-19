@@ -26,9 +26,7 @@ chrome.contextMenus.onClicked.addListener(function(info, tab) {
     
     clarifaiAuth(options.clientId, options.clientSecret)
     .then(tagPhoto)
-    .then(sendToSheet).then(function(data){
-        alert(JSON.stringify(data));
-    });
+    .then(sendToSheet);
 
     function clarifaiAuth(id, secret){
         return $.ajax({
