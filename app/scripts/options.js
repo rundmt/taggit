@@ -13,7 +13,7 @@ chrome.storage.sync.get('clientSecret' , function(obj) {
 
 chrome.storage.sync.get('scriptLink' , function(obj) {
     scriptLink = obj.scriptLink;
-    $('#scriptLink').val(scriptLink);    
+    $('#scriptLink').val(scriptLink);
 });
 
 
@@ -29,7 +29,24 @@ $(document).ready(function(){
             clientSecret: clientSecret,           
             scriptLink: scriptLink
        }, function() {
-           $('#alert-node').html('Preferences Have Been Saved');            
+           $('#alert').html('<div id="alert-node" class="alert alert-success" role="alert">Saved!</div>');    
+           
+           chrome.storage.sync.get('clientId' , function(obj) {    
+                clientId = obj.clientId;
+                console.log(clientId)
+            });
+
+            chrome.storage.sync.get('clientSecret' , function(obj) {
+                clientSecret = obj.clientSecret;       
+                console.log(clientSecret); 
+            });
+
+            chrome.storage.sync.get('scriptLink' , function(obj) {
+                scriptLink = obj.scriptLink;
+                console.log(scriptLink);
+            });        
        });
    });
 })
+
+

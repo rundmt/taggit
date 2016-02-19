@@ -22,8 +22,7 @@
       "19": "images/icon-19.png",
       "38": "images/icon-38.png"
     },
-    "default_title": "taggit",
-    "default_popup": "popup.html"
+    "default_title": "taggit"    
   },
   "options_page": "options.html",
   "content_scripts": [

@@ -1,25 +1,34 @@
-var clientId, clientSecret, scriptLink;
+var options = {};
 
 chrome.contextMenus.create({"title": "taggit", "id": "main-tag", "contexts":['image']});
 
 chrome.storage.sync.get('clientId' , function(obj) {
-    clientId = obj.clientId;
+    options.clientId = obj.clientId;
 });
 
 chrome.storage.sync.get('clientSecret' , function(obj) {
-   clientSecret = obj.clientSecret;
+   options.clientSecret = obj.clientSecret;
 });
 
 chrome.storage.sync.get('scriptLink' , function(obj) {
-   scriptLink = obj.scriptLink;
+   options.scriptLink = obj.scriptLink;
+});
+
+chrome.storage.onChanged.addListener(function(changes, namespace) {
+    for (key in changes) {
+        var storageChange = changes[key];
+        options[key] = storageChange.newValue;        
+    }
 });
 
 
 chrome.contextMenus.onClicked.addListener(function(info, tab) {
     
-    clarifaiAuth(clientId, clientSecret)
+    clarifaiAuth(options.clientId, options.clientSecret)
     .then(tagPhoto)
-    .then(sendToSheet);
+    .then(sendToSheet).then(function(data){
+        alert(JSON.stringify(data));
+    });
 
     function clarifaiAuth(id, secret){
         return $.ajax({
@@ -51,7 +60,7 @@ chrome.contextMenus.onClicked.addListener(function(info, tab) {
             url: 'https://script.google.com/macros/s/AKfycbyjVQF99qwWwiD5t5fpRZTHIwY9a4zNfsRoCp-10ytUUGcoHD4/exec',
             data: {
                 url: info.srcUrl,
-                docId: scriptLink,
+                docId: options.scriptLink,
                 tags: tags
             }
         });
